@@ -56,16 +56,16 @@ class TaxonCategoryAdapter implements TaxonAdapterInterface
         $this->entityManager = $entityManager;
     }
 
-    public function synchronize(TaxonPayload $payload): void
+    public function synchronize(TaxonPayload $payload, bool $ignoreChildren = false): void
     {
-        $this->handlePayload($payload);
+        $this->handlePayload($payload, $ignoreChildren);
 
         // Needed to use categories in other adapters
         // (e.g. category pages with a smart-content filtered by the sylius category)
         $this->entityManager->flush();
     }
 
-    private function handlePayload(TaxonPayload $payload, ?CategoryInterface $parent = null): void
+    private function handlePayload(TaxonPayload $payload, ?CategoryInterface $parent = null, bool $ignoreChildren): void
     {
         $bridge = $this->taxonCategoryBridgeRepository->findById($payload->getId());
         if (!$bridge) {
@@ -106,6 +106,10 @@ class TaxonCategoryAdapter implements TaxonAdapterInterface
             $categoryTranslation->setDescription($translationPayload->getDescription());
         }
 
+        if ($ignoreChildren) {
+            return;
+        }
+        
         foreach ($payload->getChildren() as $child) {
             $this->handlePayload($child, $category);
         }

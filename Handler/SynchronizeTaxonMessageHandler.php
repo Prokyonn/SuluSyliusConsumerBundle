@@ -32,7 +32,7 @@ class SynchronizeTaxonMessageHandler
     public function __invoke(SynchronizeTaxonMessage $message): void
     {
         foreach ($this->taxonAdapters as $taxonAdapter) {
-            $taxonAdapter->synchronize(new TaxonPayload($message->getId(), $message->getPayload()));
+            $taxonAdapter->synchronize(new TaxonPayload($message->getId(), $message->getPayload()), $message->ignoreChildren());
         }
     }
 }

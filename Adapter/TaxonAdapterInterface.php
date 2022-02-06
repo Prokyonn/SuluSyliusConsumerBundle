@@ -17,7 +17,7 @@ use Sulu\Bundle\SyliusConsumerBundle\Payload\TaxonPayload;
 
 interface TaxonAdapterInterface
 {
-    public function synchronize(TaxonPayload $payload): void;
+    public function synchronize(TaxonPayload $payload, bool $ignoreChildren = false): void;
 
     public function remove(int $id): void;
 }

@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Sulu\Bundle\SyliusConsumerBundle\Message;
 
-/**
- * @internal
- */
 class SynchronizeTaxonMessage
 {
     /**
@@ -24,14 +21,20 @@ class SynchronizeTaxonMessage
     private $id;
 
     /**
-     * @var mixed[]
+     * @var array
      */
     private $payload;
 
-    public function __construct(int $id, array $payload)
+    /**
+     * @var bool
+     */
+    private $ignoreChildren;
+
+    public function __construct(int $id, array $payload, bool $ignoreChildren = false)
     {
         $this->id = $id;
         $this->payload = $payload;
+        $this->ignoreChildren = $ignoreChildren;
     }
 
     public function getId(): int
@@ -39,8 +42,13 @@ class SynchronizeTaxonMessage
         return $this->id;
     }
 
-    public function getPayload()
+    public function getPayload(): array
     {
         return $this->payload;
+    }
+
+    public function ignoreChildren(): bool
+    {
+        return $this->ignoreChildren;
     }
 }

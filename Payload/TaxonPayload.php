@@ -65,6 +65,11 @@ class TaxonPayload
         return $children;
     }
 
+    public function getParent(): ?array
+    {
+        return $this->payload->getNullableArrayValue('parent', true);
+    }
+
     /**
      * @return TaxonTranslationPayload[]
      */
