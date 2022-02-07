@@ -15,7 +15,7 @@
             <tag name="messenger.message_handler"/>
         </service>
 
-        <service id="Sulu\Bundle\SyliusConsumerBundle\Handler\SynchronizeTaxonMessageHandler">
+        <service id="Sulu\Bundle\SyliusConsumerBundle\Handler\SynchronizeTaxonsMessageHandler">
             <argument type="tagged" tag="sulu_sylius_consumer.adapter.taxon"/>
 
             <tag name="messenger.message_handler"/>

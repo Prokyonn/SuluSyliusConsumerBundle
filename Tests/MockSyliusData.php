@@ -15,6 +15,24 @@ namespace Sulu\Bundle\SyliusConsumerBundle\Tests;
 
 final class MockSyliusData
 {
+    const TAXON_MINIMUM = [
+        'name' => 'Category',
+        'id' => 1,
+        'code' => 'MENU_CATEGORY',
+        'children' => [],
+        'left' => 1,
+        'right' => 22,
+        'level' => 0,
+        'position' => 0,
+        'translations' => [
+            'en_US' => [
+                'locale' => 'en_US',
+                'id' => 2,
+            ],
+        ],
+        'images' => [],
+    ];
+
     const TAXON = [
         'name' => 'Category',
         'id' => 1,
@@ -33,6 +51,48 @@ final class MockSyliusData
                         'left' => 3,
                         'right' => 4,
                         'level' => 2,
+                        'parent' => [
+                            'name' => 'T-shirts',
+                            'id' => 2,
+                            'code' => 't_shirts',
+                            'children' => [],
+                            'left' => 2,
+                            'right' => 7,
+                            'level' => 1,
+                            'parent' => [
+                                'name' => 'Category',
+                                'id' => 1,
+                                'code' => 'MENU_CATEGORY',
+                                'left' => 1,
+                                'right' => 22,
+                                'level' => 0,
+                                'position' => 0,
+                                'translations' => [
+                                    'en_US' => [
+                                        'locale' => 'en_US',
+                                        'id' => 2,
+                                        'name' => 'Category',
+                                        'slug' => 'category',
+                                        'description' => 'Soluta deleniti dolore tenetur. Odio voluptatibus excepturi quas autem totam odio dolorum. Sed aut at cum quia recusandae. Quos eos iusto sed sed occaecati.',
+                                    ],
+                                ],
+                                'images' => [],
+                                'customData' => [
+                                    'test' => 1,
+                                ],
+                            ],
+                            'position' => 0,
+                            'translations' => [
+                                'en_US' => [
+                                    'locale' => 'en_US',
+                                    'id' => 10,
+                                    'name' => 'T-shirts',
+                                    'slug' => 't-shirts',
+                                    'description' => 'Ea non autem odio. Quasi reprehenderit molestias ab voluptatem impedit eius voluptatem velit. Deserunt impedit asperiores consequuntur error itaque molestias. Modi quia assumenda et est consequuntur commodi.',
+                                ],
+                            ],
+                            'images' => [],
+                        ],
                         'position' => 0,
                         'translations' => [
                             'en_US' => [
@@ -49,6 +109,28 @@ final class MockSyliusData
                 'left' => 2,
                 'right' => 7,
                 'level' => 1,
+                'parent' => [
+                    'name' => 'Category',
+                    'id' => 1,
+                    'code' => 'MENU_CATEGORY',
+                    'left' => 1,
+                    'right' => 22,
+                    'level' => 0,
+                    'position' => 0,
+                    'translations' => [
+                        'en_US' => [
+                            'locale' => 'en_US',
+                            'id' => 2,
+                            'name' => 'Category',
+                            'slug' => 'category',
+                            'description' => 'Soluta deleniti dolore tenetur. Odio voluptatibus excepturi quas autem totam odio dolorum. Sed aut at cum quia recusandae. Quos eos iusto sed sed occaecati.',
+                        ],
+                    ],
+                    'images' => [],
+                    'customData' => [
+                        'test' => 1,
+                    ],
+                ],
                 'position' => 0,
                 'translations' => [
                     'en_US' => [
@@ -79,24 +161,6 @@ final class MockSyliusData
         'customData' => [
             'test' => 1,
         ],
-    ];
-
-    const TAXON_MINIMUM = [
-        'name' => 'Category',
-        'id' => 1,
-        'code' => 'MENU_CATEGORY',
-        'children' => [],
-        'left' => 1,
-        'right' => 22,
-        'level' => 0,
-        'position' => 0,
-        'translations' => [
-            'en_US' => [
-                'locale' => 'en_US',
-                'id' => 2,
-            ],
-        ],
-        'images' => [],
     ];
 
     const PRODUCT = [

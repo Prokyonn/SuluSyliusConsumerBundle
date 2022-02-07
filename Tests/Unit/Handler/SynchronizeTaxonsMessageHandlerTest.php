@@ -16,17 +16,17 @@ namespace Sulu\Bundle\SyliusConsumerBundle\Tests\Unit\Handler;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Sulu\Bundle\SyliusConsumerBundle\Adapter\TaxonAdapterInterface;
-use Sulu\Bundle\SyliusConsumerBundle\Handler\SynchronizeTaxonMessageHandler;
-use Sulu\Bundle\SyliusConsumerBundle\Message\SynchronizeTaxonMessage;
+use Sulu\Bundle\SyliusConsumerBundle\Handler\SynchronizeTaxonsMessageHandler;
+use Sulu\Bundle\SyliusConsumerBundle\Message\SynchronizeTaxonsMessage;
 use Sulu\Bundle\SyliusConsumerBundle\Payload\TaxonPayload;
 
-class SynchronizeTaxonMessageHandlerTest extends TestCase
+class SynchronizeTaxonsMessageHandlerTest extends TestCase
 {
     public function testInvoke(): void
     {
         $adapter1 = $this->prophesize(TaxonAdapterInterface::class);
         $adapter2 = $this->prophesize(TaxonAdapterInterface::class);
-        $handler = new SynchronizeTaxonMessageHandler(new \ArrayIterator([$adapter1->reveal(), $adapter2->reveal()]));
+        $handler = new SynchronizeTaxonsMessageHandler(new \ArrayIterator([$adapter1->reveal(), $adapter2->reveal()]));
 
         $adapter1->synchronize(Argument::that(function (TaxonPayload $payload) {
             return 42 === $payload->getId();
@@ -36,9 +36,8 @@ class SynchronizeTaxonMessageHandlerTest extends TestCase
             return 42 === $payload->getId();
         }))->shouldBeCalled();
 
-        $message = $this->prophesize(SynchronizeTaxonMessage::class);
-        $message->getId()->willReturn(42);
-        $message->getPayload()->willReturn(['id' => 42]);
+        $message = $this->prophesize(SynchronizeTaxonsMessage::class);
+        $message->getTaxons()->willReturn([['id' => 42]]);
 
         $handler->__invoke($message->reveal());
     }

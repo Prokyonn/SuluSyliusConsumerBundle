@@ -31,13 +31,32 @@ class TaxonCategoryAdapterTest extends KernelTestCase
         $this->purgeDatabase();
     }
 
+    private function extractSyliusTaxonChildren(array $rootTaxon, array &$taxons): array
+    {
+        $taxons[] = $rootTaxon;
+
+        if (isset($rootTaxon['children'])) {
+            foreach ($rootTaxon['children'] as $child) {
+                $this->extractSyliusTaxonChildren($child, $taxons);
+            }
+        }
+
+        return $taxons;
+    }
+
     public function testSynchronize(): void
     {
         $adapter = $this->getContainer()->get(TaxonCategoryAdapter::class);
 
-        $taxonPayload = new TaxonPayload(1, MockSyliusData::TAXON);
+        $taxons = [];
+        $this->extractSyliusTaxonChildren(MockSyliusData::TAXON, $taxons);
+        $taxonPayload1 = new TaxonPayload(1, $taxons[0]);
+        $taxonPayload2 = new TaxonPayload(2, $taxons[1]);
+        $taxonPayload3 = new TaxonPayload(3, $taxons[2]);
 
-        $adapter->synchronize($taxonPayload);
+        $adapter->synchronize($taxonPayload1);
+        $adapter->synchronize($taxonPayload2);
+        $adapter->synchronize($taxonPayload3);
 
         // Adapter flushed the entity-manager - by clearing it we can check if that works correctly
         $this->getEntityManager()->clear();
@@ -64,7 +83,10 @@ class TaxonCategoryAdapterTest extends KernelTestCase
 
         $this->assertEquals('Category', $category1->findTranslationByLocale('en_us')->getTranslation());
         $this->assertEquals('T-shirts', $category2->findTranslationByLocale('en_us')->getTranslation());
-        $this->assertEquals('necessitatibus optio labore', $category3->findTranslationByLocale('en_us')->getTranslation());
+        $this->assertEquals(
+            'necessitatibus optio labore',
+            $category3->findTranslationByLocale('en_us')->getTranslation()
+        );
 
         $this->assertNull($category1->getParent());
         $this->assertEquals($category1->getId(), $category2->getParent()->getId());
