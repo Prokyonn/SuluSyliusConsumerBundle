@@ -129,7 +129,7 @@ class ProductPayload
      */
     public function getImages(): array
     {
-        throw new FeatureNotImplementedException('Images are not implemented');
+        return $this->payload->getNullableArrayValue('images', true) ?? [];
     }
 
     public function getPayload(): Payload
