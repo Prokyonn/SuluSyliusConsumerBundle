@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Sulu\Bundle\SyliusConsumerBundle\Payload;
 
 use Sulu\Bundle\SyliusConsumerBundle\Common\Payload;
-use Sulu\Exception\FeatureNotImplementedException;
 
 class ProductPayload
 {
