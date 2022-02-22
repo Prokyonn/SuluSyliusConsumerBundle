@@ -107,4 +107,11 @@ class ProductPayloadTest extends TestCase
         $this->assertInstanceOf(Payload::class, $customData);
         $this->assertSame(['test' => 1], $customData->getData());
     }
+
+    public function testGetImages(): void
+    {
+        $entity = new ProductPayload(MockSyliusData::PRODUCT['code'], MockSyliusData::PRODUCT);
+
+        $this->assertEquals(MockSyliusData::PRODUCT['images'], $entity->getImages());
+    }
 }
