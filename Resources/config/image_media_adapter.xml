@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Sulu\Bundle\SyliusConsumerBundle\Repository\ImageMediaBridgeRepositoryInterface" alias="sulu.repository.image_media_bridge"/>
+
+        <service id="Sulu\Bundle\SyliusConsumerBundle\Adapter\ImageMediaAdapter">
+            <argument type="service" id="sulu.repository.image_media_bridge"/>
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="http_client"/>
+            <argument type="service" id="sulu_media.storage"/>
+            <argument type="service" id="sulu_media.system_collections.manager"/>
+            <argument>%sulu_sylius_consumer.sylius_base_url%</argument>
+            <argument>%sulu_sylius_consumer.media_collection.key%</argument>
+
+            <tag name="sulu_sylius_consumer.adapter.image"/>
+        </service>
+    </services>
+</container>

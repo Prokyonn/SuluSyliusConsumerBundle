@@ -36,6 +36,12 @@ class SuluSyliusConsumerExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('handler.xml');
 
+        if ($config['image_media_adapter']['enabled'] ?? false) {
+            $loader->load('image_media_adapter.xml');
+            $collectionKey = $config['image_media_adapter']['media_collection_key'];
+            $container->setParameter('sulu_sylius_consumer.media_collection.key', $collectionKey);
+        }
+
         if ($config['taxon_category_adapter']['enabled'] ?? false) {
             $loader->load('taxon_category_adapter.xml');
         }

@@ -14,9 +14,11 @@ declare(strict_types=1);
 namespace Sulu\Bundle\SyliusConsumerBundle;
 
 use Sulu\Bundle\PersistenceBundle\PersistenceBundleTrait;
+use Sulu\Bundle\SyliusConsumerBundle\Adapter\ImageAdapterInterface;
 use Sulu\Bundle\SyliusConsumerBundle\Adapter\ProductAdapterInterface;
 use Sulu\Bundle\SyliusConsumerBundle\Adapter\ProductVariantAdapterInterface;
 use Sulu\Bundle\SyliusConsumerBundle\Adapter\TaxonAdapterInterface;
+use Sulu\Bundle\SyliusConsumerBundle\Entity\ImageMediaBridgeInterface;
 use Sulu\Bundle\SyliusConsumerBundle\Entity\TaxonCategoryBridgeInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -30,6 +32,9 @@ class SuluSyliusConsumerBundle extends Bundle
         $container->registerForAutoconfiguration(TaxonAdapterInterface::class)
             ->addTag('sulu_sylius_consumer.adapter.taxon');
 
+        $container->registerForAutoconfiguration(ImageAdapterInterface::class)
+            ->addTag('sulu_sylius_consumer.adapter.media');
+
         $container->registerForAutoconfiguration(ProductAdapterInterface::class)
             ->addTag('sulu_sylius_consumer.adapter.product');
 
@@ -39,6 +44,7 @@ class SuluSyliusConsumerBundle extends Bundle
         $this->buildPersistence(
             [
                 TaxonCategoryBridgeInterface::class => 'sulu.model.taxon_category_bridge.class',
+                ImageMediaBridgeInterface::class => 'sulu.model.image_media_bridge.class',
             ],
             $container
         );

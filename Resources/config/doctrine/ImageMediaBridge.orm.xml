@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <mapped-superclass name="Sulu\Bundle\SyliusConsumerBundle\Entity\ImageMediaBridge"
+                       table="sy_co_image_media_bridges">
+        <id name="imageId" type="integer">
+            <generator strategy="NONE"/>
+        </id>
+
+        <one-to-one field="media" target-entity="Sulu\Bundle\MediaBundle\Entity\MediaInterface">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+
+            <join-column name="mediaId" nullable="false" on-delete="CASCADE"/>
+        </one-to-one>
+    </mapped-superclass>
+</doctrine-mapping>

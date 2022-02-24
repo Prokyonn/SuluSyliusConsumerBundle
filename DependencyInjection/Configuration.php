@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Sulu\Bundle\SyliusConsumerBundle\DependencyInjection;
 
+use Sulu\Bundle\SyliusConsumerBundle\Entity\ImageMediaBridge;
 use Sulu\Bundle\SyliusConsumerBundle\Entity\TaxonCategoryBridge;
+use Sulu\Bundle\SyliusConsumerBundle\Repository\ImageMediaBridgeRepository;
 use Sulu\Bundle\SyliusConsumerBundle\Repository\TaxonCategoryBridgeRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -31,6 +33,12 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('sylius_base_url')->isRequired()->end()
                 ->booleanNode('auto_publish')->defaultFalse()->end()
                 ->arrayNode('taxon_category_adapter')->canBeEnabled()->end()
+                ->arrayNode('image_media_adapter')
+                    ->canBeEnabled()
+                    ->children()
+                        ->scalarNode('media_collection_key')->defaultValue('product_images')->end()
+                    ->end()
+                ->end()
                 ->arrayNode('objects')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -39,6 +47,13 @@ class Configuration implements ConfigurationInterface
                             ->children()
                                 ->scalarNode('model')->defaultValue(TaxonCategoryBridge::class)->end()
                                 ->scalarNode('repository')->defaultValue(TaxonCategoryBridgeRepository::class)->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('image_media_bridge')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('model')->defaultValue(ImageMediaBridge::class)->end()
+                                ->scalarNode('repository')->defaultValue(ImageMediaBridgeRepository::class)->end()
                             ->end()
                         ->end()
                     ->end()
