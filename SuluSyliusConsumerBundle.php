@@ -33,7 +33,7 @@ class SuluSyliusConsumerBundle extends Bundle
             ->addTag('sulu_sylius_consumer.adapter.taxon');
 
         $container->registerForAutoconfiguration(ImageAdapterInterface::class)
-            ->addTag('sulu_sylius_consumer.adapter.media');
+            ->addTag('sulu_sylius_consumer.adapter.image');
 
         $container->registerForAutoconfiguration(ProductAdapterInterface::class)
             ->addTag('sulu_sylius_consumer.adapter.product');
