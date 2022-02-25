@@ -8,13 +8,19 @@
         <service id="Sulu\Bundle\SyliusConsumerBundle\Adapter\ImageMediaAdapter">
             <argument type="service" id="sulu.repository.image_media_bridge"/>
             <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument type="service" id="http_client"/>
             <argument type="service" id="sulu_media.storage"/>
             <argument type="service" id="sulu_media.system_collections.manager"/>
-            <argument>%sulu_sylius_consumer.sylius_base_url%</argument>
+            <argument type="service" id="Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloader"/>
             <argument>%sulu_sylius_consumer.media_collection.key%</argument>
 
             <tag name="sulu_sylius_consumer.adapter.image" priority="1024"/>
+        </service>
+
+        <service id="Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloaderInterface" alias="Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloader"/>
+
+        <service id="Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloader" class="Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloader">
+            <argument type="service" id="http_client"/>
+            <argument>%sulu_sylius_consumer.sylius_base_url%</argument>
         </service>
     </services>
 </container>

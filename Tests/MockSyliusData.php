@@ -207,8 +207,10 @@ Expedita voluptatum magnam est vitae voluptas eos. Maiores voluptatibus quos eni
                 'id' => 1,
                 'type' => 'main',
                 'path' => '23/d6/bab23ff05421d888c688112110c5.jpg',
-                'filename' => null,
-                'customData' => [],
+                'filename' => 'Test123',
+                'customData' => [
+                    'test' => 1,
+                ],
             ],
         ],
         'customData' => [
