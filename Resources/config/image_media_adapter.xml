@@ -14,7 +14,7 @@
             <argument>%sulu_sylius_consumer.sylius_base_url%</argument>
             <argument>%sulu_sylius_consumer.media_collection.key%</argument>
 
-            <tag name="sulu_sylius_consumer.adapter.image"/>
+            <tag name="sulu_sylius_consumer.adapter.image" priority="1024"/>
         </service>
     </services>
 </container>
