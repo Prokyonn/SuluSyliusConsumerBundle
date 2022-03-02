@@ -14,6 +14,24 @@ sulu_sylius_consumer:
     sylius_base_url: 'http://sylius.localhost'
     taxon_category_adapter:
         enabled: true
+    image_media_adapter:
+        enabled: true
+        media_collection_key: product_images
+
+sulu_media:
+    system_collections:
+        product_images:
+            meta_title:
+                en: 'Product Images'
 
 swiftmailer:
     disable_delivery: true
+
+services:
+    Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloaderInterface:
+        class: Sulu\Bundle\SyliusConsumerBundle\Tests\Functional\Mocks\SyliusImageDownloader
+        public: true
+
+    sulu_media.storage:
+        class: Sulu\Bundle\SyliusConsumerBundle\Tests\Functional\Mocks\Storage
+        public: true

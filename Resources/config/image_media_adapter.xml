@@ -10,7 +10,7 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="sulu_media.storage"/>
             <argument type="service" id="sulu_media.system_collections.manager"/>
-            <argument type="service" id="Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloader"/>
+            <argument type="service" id="Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloaderInterface"/>
             <argument>%sulu_sylius_consumer.media_collection.key%</argument>
 
             <tag name="sulu_sylius_consumer.adapter.image" priority="1024"/>
