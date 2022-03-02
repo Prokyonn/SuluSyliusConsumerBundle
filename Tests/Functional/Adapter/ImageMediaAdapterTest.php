@@ -108,7 +108,10 @@ class ImageMediaAdapterTest extends KernelTestCase
         self::assertNotNull($imageBridge->getMedia());
     }
 
-    private function setId(object $object, int|string $id): void
+    /**
+     * @param int|string $id
+     */
+    private function setId(object $object, $id): void
     {
         $metadata = self::getEntityManager()->getClassMetaData(get_class($object));
         $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
