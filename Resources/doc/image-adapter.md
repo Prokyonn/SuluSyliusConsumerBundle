@@ -36,7 +36,7 @@ sulu_media:
                 de: 'Produkt Bilder'
                 fr: 'Images de produits'
 ```
-More inforamtion about the system collections can be found [here](https://docs.sulu.io/en/2.4/cookbook/system-collections.html)
+More information about the system collections can be found [here](https://docs.sulu.io/en/2.4/cookbook/system-collections.html)
 
 ## Custom Adapter
 
