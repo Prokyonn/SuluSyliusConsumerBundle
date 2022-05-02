@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sulu\Bundle\SyliusConsumerBundle\Service;
 
-use Sulu\Bundle\SyliusConsumerBundle\Exception\ImageDownloadFailedException;
+use Sulu\Bundle\SyliusConsumerBundle\Exception\ImageDownloadFailedRecoverableException;
 use Sulu\Bundle\SyliusConsumerBundle\Payload\ImagePayload;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +48,7 @@ class SyliusImageDownloader implements SyliusImageDownloaderInterface
 
         $response = $this->httpClient->request('GET', $url);
         if (Response::HTTP_OK !== $response->getStatusCode()) {
-            throw new ImageDownloadFailedException($url);
+            throw new ImageDownloadFailedRecoverableException($url);
         }
         $fileHandler = fopen($imagePath, 'wb');
         foreach ($this->httpClient->stream($response) as $chunk) {

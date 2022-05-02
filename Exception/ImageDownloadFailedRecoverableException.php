@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Sulu\Bundle\SyliusConsumerBundle\Exception;
 
-final class ImageDownloadFailedException extends \Exception
+use Symfony\Component\Messenger\Exception\RecoverableMessageHandlingException;
+
+final class ImageDownloadFailedRecoverableException extends RecoverableMessageHandlingException
 {
     public function __construct(string $url)
     {
