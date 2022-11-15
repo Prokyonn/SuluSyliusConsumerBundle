@@ -24,9 +24,6 @@ sulu_media:
             meta_title:
                 en: 'Product Images'
 
-swiftmailer:
-    disable_delivery: true
-
 services:
     Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloaderInterface:
         class: Sulu\Bundle\SyliusConsumerBundle\Tests\Functional\Mocks\SyliusImageDownloader

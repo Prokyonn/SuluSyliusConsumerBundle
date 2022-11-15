@@ -12,6 +12,7 @@ phpunit.xml
 
 # tests
 .env
+.env.*local
 Tests/Application/var
 
 # npm
