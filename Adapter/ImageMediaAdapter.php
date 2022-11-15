@@ -26,6 +26,7 @@ use Sulu\Bundle\SyliusConsumerBundle\Payload\ImagePayload;
 use Sulu\Bundle\SyliusConsumerBundle\Repository\ImageMediaBridgeRepositoryInterface;
 use Sulu\Bundle\SyliusConsumerBundle\Service\SyliusImageDownloaderInterface;
 use Sulu\Component\Media\SystemCollections\SystemCollectionManagerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageMediaAdapter implements ImageAdapterInterface
@@ -109,7 +110,17 @@ class ImageMediaAdapter implements ImageAdapterInterface
         $media = $bridge->getMedia();
         $uploadedFile = $this->syliusImageDownloader->downloadImage($payload);
         $this->updateMedia($media, $uploadedFile, $payload->getLocale());
+        $this->removeTemporaryMediaFile($uploadedFile);
         $this->entityManager->persist($bridge);
+    }
+
+    private function removeTemporaryMediaFile(UploadedFile $uploadedFile): void
+    {
+        $filesystem = new Filesystem();
+        $filePath = $uploadedFile->getPathname();
+        if ($filesystem->exists($filePath) && $uploadedFile->isFile()) {
+            $filesystem->remove($filePath);
+        }
     }
 
     private function updateMedia(MediaInterface $media, UploadedFile $uploadedFile, string $locale): MediaInterface
