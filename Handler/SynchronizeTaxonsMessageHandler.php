@@ -34,11 +34,11 @@ class SynchronizeTaxonsMessageHandler
         $taxons = $message->getTaxons();
 
         //ensure the parent taxons are before the children
-        usort($taxons, static function (array $a, array $b) {
+        \usort($taxons, static function(array $a, array $b) {
             return $a['level'] - $b['level'];
         });
 
-        $taxonPayloads = array_map(function (array $taxon) {
+        $taxonPayloads = \array_map(function(array $taxon) {
             return new TaxonPayload($taxon['id'], $taxon);
         }, $taxons);
 

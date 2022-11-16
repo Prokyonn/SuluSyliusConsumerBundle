@@ -18,7 +18,7 @@ final class ParentTaxonBridgeNotFoundException extends \Exception
     public function __construct(string $id)
     {
         parent::__construct(
-            sprintf(
+            \sprintf(
                 'The TaxonBridge with the id "%s" was not found. ' .
                 'Keep in mind that syncing child categories also requires their parents to be synced.',
                 $id

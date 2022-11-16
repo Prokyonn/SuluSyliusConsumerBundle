@@ -40,19 +40,19 @@ class SyliusImageDownloader implements SyliusImageDownloaderInterface
     public function downloadImage(ImagePayload $payload): UploadedFile
     {
         $url =
-            rtrim($this->syliusBaseUrl, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR .
-            'media' . DIRECTORY_SEPARATOR . 'image' . DIRECTORY_SEPARATOR . $payload->getPath();
-        $urlParts = pathinfo($url);
+            \rtrim($this->syliusBaseUrl, \DIRECTORY_SEPARATOR) . \DIRECTORY_SEPARATOR .
+            'media' . \DIRECTORY_SEPARATOR . 'image' . \DIRECTORY_SEPARATOR . $payload->getPath();
+        $urlParts = \pathinfo($url);
         $filename = $urlParts['filename'] . '.' . ($urlParts['extension'] ?? '');
-        $imagePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $filename;
+        $imagePath = \sys_get_temp_dir() . \DIRECTORY_SEPARATOR . $filename;
 
         $response = $this->httpClient->request('GET', $url);
         if (Response::HTTP_OK !== $response->getStatusCode()) {
             throw new ImageDownloadFailedRecoverableException($url);
         }
-        $fileHandler = fopen($imagePath, 'wb');
+        $fileHandler = \fopen($imagePath, 'wb');
         foreach ($this->httpClient->stream($response) as $chunk) {
-            fwrite($fileHandler, $chunk->getContent());
+            \fwrite($fileHandler, $chunk->getContent());
         }
 
         return new UploadedFile($imagePath, $filename);

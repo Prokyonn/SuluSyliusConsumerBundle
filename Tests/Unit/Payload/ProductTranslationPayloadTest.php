@@ -67,7 +67,7 @@ class ProductTranslationPayloadTest extends TestCase
     {
         $entity = new ProductTranslationPayload(MockSyliusData::PRODUCT['translations'][0]);
 
-        $this->assertEquals('Quia nihil dignissimos expedita quia neque odio qui sunt. Nemo animi maxime rem qui quaerat eos. Eum ipsam aut aliquid cum et in sint.' . PHP_EOL . PHP_EOL . 'Est cumque illum saepe aliquam est. Ullam impedit ipsa aut nostrum est sunt nesciunt. Ut sint saepe ullam sed dolorum atque eos accusamus.' . PHP_EOL . PHP_EOL . 'Expedita voluptatum magnam est vitae voluptas eos. Maiores voluptatibus quos enim expedita voluptatibus aut. Non ducimus nesciunt voluptas deleniti.', $entity->getDescription());
+        $this->assertEquals('Quia nihil dignissimos expedita quia neque odio qui sunt. Nemo animi maxime rem qui quaerat eos. Eum ipsam aut aliquid cum et in sint.' . \PHP_EOL . \PHP_EOL . 'Est cumque illum saepe aliquam est. Ullam impedit ipsa aut nostrum est sunt nesciunt. Ut sint saepe ullam sed dolorum atque eos accusamus.' . \PHP_EOL . \PHP_EOL . 'Expedita voluptatum magnam est vitae voluptas eos. Maiores voluptatibus quos enim expedita voluptatibus aut. Non ducimus nesciunt voluptas deleniti.', $entity->getDescription());
     }
 
     public function testGetDescriptionWithMimum(): void

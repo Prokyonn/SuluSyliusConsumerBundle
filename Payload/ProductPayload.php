@@ -63,7 +63,7 @@ class ProductPayload
      */
     public function getTaxonIds(): array
     {
-        return array_map(function (array $taxon) {
+        return \array_map(function(array $taxon) {
             return $taxon['taxonId'];
         }, $this->payload->getArrayValue('productTaxons'));
     }
@@ -73,7 +73,7 @@ class ProductPayload
      */
     public function getTaxonCodes(): array
     {
-        return array_map(function (array $taxon) {
+        return \array_map(function(array $taxon) {
             return $taxon['taxonCode'];
         }, $this->payload->getArrayValue('productTaxons'));
     }

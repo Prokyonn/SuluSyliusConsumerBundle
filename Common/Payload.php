@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sulu\Bundle\SyliusConsumerBundle\Common;
 
-use Ramsey\Uuid\Uuid;
 use Webmozart\Assert\Assert;
 
 class Payload

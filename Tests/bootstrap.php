@@ -14,14 +14,14 @@ declare(strict_types=1);
 use Symfony\Component\Dotenv\Dotenv;
 
 $file = __DIR__ . '/../vendor/autoload.php';
-if (!file_exists($file)) {
+if (!\file_exists($file)) {
     throw new RuntimeException('Install dependencies to run test suite.');
 }
 
 $result = require $file;
 
-if (file_exists(__DIR__ . '/../.env')) {
-    if (!class_exists(Dotenv::class)) {
+if (\file_exists(__DIR__ . '/../.env')) {
+    if (!\class_exists(Dotenv::class)) {
         throw new \RuntimeException('Add "symfony/dotenv" as a Composer dependency to load variables from a .env file.');
     }
 

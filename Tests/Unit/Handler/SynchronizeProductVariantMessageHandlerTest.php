@@ -28,12 +28,12 @@ class SynchronizeProductVariantMessageHandlerTest extends TestCase
         $adapter2 = $this->prophesize(ProductVariantAdapterInterface::class);
         $handler = new SynchronizeProductVariantMessageHandler(new \ArrayIterator([$adapter1->reveal(), $adapter2->reveal()]));
 
-        $adapter1->synchronize(Argument::that(function (ProductVariantPayload $payload) {
+        $adapter1->synchronize(Argument::that(function(ProductVariantPayload $payload) {
             return 'variant-1' === $payload->getCode()
                 && 'product-1' === $payload->getProductCode();
         }))->shouldBeCalled();
 
-        $adapter2->synchronize(Argument::that(function (ProductVariantPayload $payload) {
+        $adapter2->synchronize(Argument::that(function(ProductVariantPayload $payload) {
             return 'variant-1' === $payload->getCode()
                 && 'product-1' === $payload->getProductCode();
         }))->shouldBeCalled();

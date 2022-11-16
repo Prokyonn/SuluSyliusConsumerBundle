@@ -28,11 +28,11 @@ class SynchronizeTaxonsMessageHandlerTest extends TestCase
         $adapter2 = $this->prophesize(TaxonAdapterInterface::class);
         $handler = new SynchronizeTaxonsMessageHandler(new \ArrayIterator([$adapter1->reveal(), $adapter2->reveal()]));
 
-        $adapter1->synchronize(Argument::that(function (TaxonPayload $payload) {
+        $adapter1->synchronize(Argument::that(function(TaxonPayload $payload) {
             return 42 === $payload->getId();
         }))->shouldBeCalled();
 
-        $adapter2->synchronize(Argument::that(function (TaxonPayload $payload) {
+        $adapter2->synchronize(Argument::that(function(TaxonPayload $payload) {
             return 42 === $payload->getId();
         }))->shouldBeCalled();
 

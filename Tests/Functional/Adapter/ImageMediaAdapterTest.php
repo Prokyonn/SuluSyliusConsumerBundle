@@ -113,7 +113,7 @@ class ImageMediaAdapterTest extends KernelTestCase
      */
     private function setId(object $object, $id): void
     {
-        $metadata = self::getEntityManager()->getClassMetaData(get_class($object));
+        $metadata = self::getEntityManager()->getClassMetaData(\get_class($object));
         $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
         $metadata->setIdGenerator(new AssignedGenerator());
 

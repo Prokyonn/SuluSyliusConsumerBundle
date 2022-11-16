@@ -28,7 +28,7 @@ class Kernel extends SuluTestKernel
             $bundles[] = new \Symfony\Bundle\SecurityBundle\SecurityBundle();
         }
 
-        return array_merge($bundles, parent::registerBundles());
+        return \array_merge($bundles, parent::registerBundles());
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader): void

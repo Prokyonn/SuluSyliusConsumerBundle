@@ -15,7 +15,7 @@ namespace Sulu\Bundle\SyliusConsumerBundle\Tests;
 
 final class MockSyliusData
 {
-    const TAXON_MINIMUM = [
+    public const TAXON_MINIMUM = [
         'name' => 'Category',
         'id' => 1,
         'code' => 'MENU_CATEGORY',
@@ -33,7 +33,7 @@ final class MockSyliusData
         'images' => [],
     ];
 
-    const TAXON = [
+    public const TAXON = [
         'name' => 'Category',
         'id' => 1,
         'code' => 'MENU_CATEGORY',
@@ -163,7 +163,7 @@ final class MockSyliusData
         ],
     ];
 
-    const PRODUCT = [
+    public const PRODUCT = [
         'id' => 1,
         'code' => 'Everyday_white_basic_T_Shirt',
         'enabled' => true,
@@ -263,7 +263,7 @@ Expedita voluptatum magnam est vitae voluptas eos. Maiores voluptatibus quos eni
         ],
     ];
 
-    const PRODUCT_MINIMUM = [
+    public const PRODUCT_MINIMUM = [
         'id' => 1,
         'code' => 'Everyday_white_basic_T_Shirt',
         'enabled' => true,
@@ -281,7 +281,7 @@ Expedita voluptatum magnam est vitae voluptas eos. Maiores voluptatibus quos eni
         'variants' => [],
     ];
 
-    const PRODUCT_VARIANT = [
+    public const PRODUCT_VARIANT = [
         'id' => 1,
         'code' => 'Everyday_white_basic_T_Shirt-variant-0',
         'position' => 0,
@@ -300,7 +300,7 @@ Expedita voluptatum magnam est vitae voluptas eos. Maiores voluptatibus quos eni
         ],
     ];
 
-    const PRODUCT_VARIANT_MINIMUM = [
+    public const PRODUCT_VARIANT_MINIMUM = [
         'id' => 1,
         'code' => 'Everyday_white_basic_T_Shirt-variant-0',
         'position' => 0,

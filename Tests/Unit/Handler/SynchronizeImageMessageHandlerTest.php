@@ -28,11 +28,11 @@ class SynchronizeImageMessageHandlerTest extends TestCase
         $adapter2 = $this->prophesize(ImageAdapterInterface::class);
         $handler = new SynchronizeImageMessageHandler(new \ArrayIterator([$adapter1->reveal(), $adapter2->reveal()]));
 
-        $adapter1->synchronize(Argument::that(function (ImagePayload $payload) {
+        $adapter1->synchronize(Argument::that(function(ImagePayload $payload) {
             return 42 === $payload->getId();
         }))->shouldBeCalled();
 
-        $adapter2->synchronize(Argument::that(function (ImagePayload $payload) {
+        $adapter2->synchronize(Argument::that(function(ImagePayload $payload) {
             return 42 === $payload->getId();
         }))->shouldBeCalled();
 

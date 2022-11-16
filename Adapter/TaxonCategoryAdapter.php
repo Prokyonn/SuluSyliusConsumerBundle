@@ -89,7 +89,7 @@ class TaxonCategoryAdapter implements TaxonAdapterInterface
 
         $translations = $payload->getTranslations();
         $category->setDefaultLocale(
-            Localization::createFromString(array_key_first($translations), Localization::LCID)->getLocale()
+            Localization::createFromString(\array_key_first($translations), Localization::LCID)->getLocale()
         );
 
         foreach ($translations as $translationPayload) {
