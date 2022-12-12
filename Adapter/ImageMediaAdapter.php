@@ -126,9 +126,10 @@ class ImageMediaAdapter implements ImageAdapterInterface
     private function updateMedia(MediaInterface $media, UploadedFile $uploadedFile, string $locale): MediaInterface
     {
         $latestFileVersion = null;
+        $existingFile = null;
         if ($media->getFiles()->count() > 0) {
-            $latestFile = $media->getFiles()->last();
-            $latestFileVersion = $latestFile->getLatestFileVersion();
+            $existingFile = $media->getFiles()->first();
+            $latestFileVersion = $existingFile->getLatestFileVersion();
 
             if ($latestFileVersion && $latestFileVersion->getSize() === $uploadedFile->getSize()) {
                 // same image, not necessary to update anything
@@ -141,13 +142,15 @@ class ImageMediaAdapter implements ImageAdapterInterface
             $uploadedFile->getFilename()
         );
 
-        $file = new File();
+        $file = $existingFile ?? new File();
         $file->setVersion($latestFileVersion ? $latestFileVersion->getVersion() + 1 : 1)
             ->setMedia($media);
 
-        $media->addFile($file)
-            ->setType($this->getImageMediaType())
-            ->setCollection($this->getCollection());
+        if (!$existingFile) {
+            $media->addFile($file)
+                ->setType($this->getImageMediaType())
+                ->setCollection($this->getCollection());
+        }
 
         $fileVersion = new FileVersion();
         $fileVersion->setVersion($file->getVersion())
