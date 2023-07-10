@@ -132,8 +132,14 @@ class ImageMediaAdapter implements ImageAdapterInterface
             $latestFileVersion = $existingFile->getLatestFileVersion();
 
             if ($latestFileVersion && $latestFileVersion->getSize() === $uploadedFile->getSize()) {
-                // same image, not necessary to update anything
-                return $media;
+                try {
+                    $this->storage->load($latestFileVersion->getStorageOptions());
+
+                    // same image, not necessary to update anything
+                    return $media;
+                } catch (\Exception $e) {
+                    // file not found, continue
+                }
             }
         }
 
